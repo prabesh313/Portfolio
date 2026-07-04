@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prabesh Paudel — Full-stack Developer</title>
+<meta name="description" content="Portfolio of Prabesh Paudel, full-stack Django developer.">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#14161b;
+  --bg-alt:#191c22;
+  --surface:#1e222a;
+  --surface-2:#242833;
+  --border:#2d323d;
+  --text:#e9e7e1;
+  --text-muted:#8b8f9a;
+  --accent-gold:#e0a458;
+  --accent-gold-dim:#8a683c;
+  --accent-teal:#6fae8f;
+  --accent-red:#d16a6a;
+  --accent-yellow:#dcc064;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+  --sans:'Inter', system-ui, sans-serif;
+}
+
+*{scroll-behavior:smooth;}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.65;
+}
+
+::selection{background:var(--accent-gold);color:#14161b;}
+
+a{color:var(--accent-teal);text-decoration:none;}
+a:hover{color:var(--accent-gold);}
+
+.mono{font-family:var(--mono);}
+
+.topnav{
+  background:rgba(20,22,27,.9);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--border);
+}
+.topnav .brand{
+  font-family:var(--mono);
+  font-weight:700;
+  color:var(--text);
+  font-size:1.02rem;
+}
+.topnav .brand span{color:var(--accent-gold);}
+.topnav .nav-link{
+  font-family:var(--mono);
+  font-size:.88rem;
+  color:var(--text-muted);
+  padding:.4rem .85rem !important;
+  border-radius:5px;
+  transition:color .15s ease, background .15s ease;
+}
+.topnav .nav-link:hover{color:var(--text);background:var(--surface-2);}
+.topnav .nav-link.active{color:var(--accent-gold);}
+
+.hero{
+  padding:7.5rem 0 5rem;
+  border-bottom:1px solid var(--border);
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(224,164,88,.07), transparent 60%),
+    var(--bg);
+}
+.term-window{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 30px 60px -25px rgba(0,0,0,.6);
+  max-width:760px;
+  margin:0 auto;
+}
+.term-titlebar{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.65rem .9rem;
+  background:var(--surface-2);
+  border-bottom:1px solid var(--border);
+}
+.term-dot{width:11px;height:11px;border-radius:50%;display:inline-block;}
+.term-dot.r{background:var(--accent-red);}
+.term-dot.y{background:var(--accent-yellow);}
+.term-dot.g{background:var(--accent-teal);}
+.term-path{
+  margin-left:.75rem;
+  font-family:var(--mono);
+  font-size:.78rem;
+  color:var(--text-muted);
+}
+.term-body{
+  padding:1.6rem 1.75rem 2rem;
+  font-family:var(--mono);
+  font-size:.95rem;
+}
+.term-line{color:var(--text-muted);}
+.term-prompt{color:var(--accent-teal);}
+.term-out-name{
+  font-size:2.1rem;
+  font-weight:700;
+  color:var(--text);
+  line-height:1.25;
+  margin:.35rem 0 .15rem;
+}
+.term-out-role{color:var(--accent-gold);font-size:1.05rem;}
+.cursor{
+  display:inline-block;
+  width:9px;height:1.1em;
+  background:var(--accent-gold);
+  margin-left:2px;
+  vertical-align:text-bottom;
+  animation:blink 1s steps(1) infinite;
+}
+@keyframes blink{50%{opacity:0;}}
+
+.hero-lede{
+  color:var(--text-muted);
+  max-width:64ch;
+}
+
+.btn-term{
+  font-family:var(--mono);
+  font-size:.85rem;
+  padding:.55rem 1.1rem;
+  border-radius:6px;
+  border:1px solid var(--border);
+  background:var(--surface-2);
+  color:var(--text);
+  transition:border-color .15s ease, transform .1s ease;
+}
+.btn-term:hover{border-color:var(--accent-gold);color:var(--text);transform:translateY(-1px);}
+.btn-term.primary{
+  background:var(--accent-gold);
+  color:#14161b;
+  border-color:var(--accent-gold);
+  font-weight:600;
+}
+.btn-term.primary:hover{background:#eab671;color:#14161b;}
+
+.section{padding:5rem 0;border-bottom:1px solid var(--border);}
+.section-tab{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-family:var(--mono);
+  font-size:.8rem;
+  color:var(--text-muted);
+  background:var(--surface);
+  border:1px solid var(--border);
+  padding:.3rem .75rem;
+  border-radius:5px 5px 0 0;
+  border-bottom:none;
+}
+.section-tab .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-teal);}
+
+.md-panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:0 8px 8px 8px;
+  padding:2rem 2.1rem;
+}
+.md-panel h3{
+  font-family:var(--mono);
+  font-size:1.05rem;
+  color:var(--accent-gold);
+  margin-bottom:.6rem;
+}
+.md-panel p{color:var(--text-muted);margin-bottom:1.1rem;}
+.md-panel p:last-child{margin-bottom:0;}
+.edu-row{
+  display:flex;
+  gap:1rem;
+  align-items:baseline;
+  flex-wrap:wrap;
+  font-family:var(--mono);
+  font-size:.85rem;
+  color:var(--text-muted);
+  border-top:1px dashed var(--border);
+  padding-top:1rem;
+  margin-top:.5rem;
+}
+.edu-row b{color:var(--text);font-family:var(--sans);}
+
+.json-panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:0 8px 8px 8px;
+  padding:1.75rem 2rem;
+  font-family:var(--mono);
+  font-size:.88rem;
+  overflow-x:auto;
+}
+.json-panel .k{color:var(--accent-teal);}
+.json-panel .s{color:var(--accent-gold);}
+.json-panel .b{color:var(--text-muted);}
+.json-panel .line{white-space:pre;}
+
+.repo-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:1.6rem 1.7rem;
+  height:100%;
+  transition:border-color .18s ease, transform .18s ease;
+}
+.repo-card:hover{border-color:var(--accent-gold-dim);transform:translateY(-3px);}
+.repo-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:.75rem;
+  margin-bottom:.6rem;
+}
+.repo-name{
+  font-family:var(--mono);
+  font-weight:700;
+  font-size:1.08rem;
+  color:var(--text);
+}
+.repo-name a{color:inherit;}
+.repo-name a:hover{color:var(--accent-gold);}
+.repo-tag{
+  font-family:var(--mono);
+  font-size:.7rem;
+  color:var(--bg);
+  background:var(--accent-teal);
+  padding:.15rem .5rem;
+  border-radius:4px;
+  white-space:nowrap;
+}
+.repo-tag.pinned{background:var(--accent-gold);}
+.repo-desc{color:var(--text-muted);font-size:.93rem;margin-bottom:1rem;}
+.repo-desc li{margin-bottom:.3rem;}
+.pill-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem;}
+.pill{
+  font-family:var(--mono);
+  font-size:.72rem;
+  color:var(--text-muted);
+  border:1px solid var(--border);
+  padding:.15rem .55rem;
+  border-radius:20px;
+}
+.repo-links{display:flex;flex-direction:column;gap:.3rem;}
+.repo-link{
+  font-family:var(--mono);
+  font-size:.82rem;
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+}
+
+.badge-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:1.3rem 1.5rem;
+  display:flex;
+  align-items:center;
+  gap:1rem;
+}
+.badge-icon{
+  width:42px;height:42px;
+  flex-shrink:0;
+  border-radius:8px;
+  background:var(--surface-2);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent-gold);
+  font-family:var(--mono);
+  font-weight:700;
+}
+.badge-card b{display:block;font-size:.95rem;}
+.badge-card span{color:var(--text-muted);font-size:.82rem;}
+
+.contact-term{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:2rem 2.2rem;
+}
+.contact-term .term-line{font-family:var(--mono);font-size:.95rem;margin-bottom:.5rem;}
+.contact-links{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.2rem;}
+footer{
+  padding:2rem 0;
+  text-align:center;
+  font-family:var(--mono);
+  font-size:.78rem;
+  color:var(--text-muted);
+}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease, transform .5s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+@media (prefers-reduced-motion: reduce){
+  .cursor{animation:none;}
+  .reveal{opacity:1;transform:none;transition:none;}
+  *{scroll-behavior:auto;}
+}
+
+:focus-visible{outline:2px solid var(--accent-gold);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md topnav fixed-top py-2">
+  <div class="container">
+    <a class="brand" href="#top">prabesh<span>@</span>portfolio</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="filter:invert(1);">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <div class="navbar-nav">
+        <a class="nav-link" href="#about">~/about</a>
+        <a class="nav-link" href="#skills">~/skills</a>
+        <a class="nav-link" href="#projects">~/projects</a>
+        <a class="nav-link" href="#contact">~/contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container">
+    <div class="term-window">
+      <div class="term-titlebar">
+        <span class="term-dot r"></span><span class="term-dot y"></span><span class="term-dot g"></span>
+        <span class="term-path">bash — ~/prabesh</span>
+      </div>
+      <div class="term-body">
+        <div class="term-line"><span class="term-prompt">prabesh@dev</span>:~$ whoami</div>
+        <div class="term-out-name" id="typedName"></div>
+        <div class="term-out-role" id="typedRole"></div>
+        <p class="hero-lede mt-4 mb-4">
+          I build backend systems and the interfaces on top of them, primarily with Django, creating scalable web applications, secure APIs, and real-time systems from concept to deployment.
+        </p>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="#projects" class="btn-term primary">./view-projects</a>
+          <a href="#contact" class="btn-term">./get-in-touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-tab"><span class="dot"></span>about.md</div>
+    <div class="md-panel reveal">
+      <h3>## Background</h3>
+      <p>
+        I'm a CSIT student at NIST College, Banepa, currently in my final year. Most of what
+        I know about software I picked up by building things that were slightly too ambitious
+        for my skill level at the time — an astrology platform with live video calls, a
+        multiplayer chess server, an incident-reporting app with maps and notifications. Each
+        one forced me to learn the next piece: authentication, WebSockets, third-party APIs,
+        deployment.
+      </p>
+      <p>
+        I like backend work the most — designing the data model, getting the API right, making
+        sure two users' actions stay in sync — but I can carry a project through the frontend
+        too when it needs one. I'm reasonably good at explaining technical decisions to people
+        who didn't make them, which has helped more than I expected.
+      </p>
+      <div class="edu-row">
+        <span>🎓</span>
+        <span><b>BSc. CSIT</b> — NIST College, Banepa</span>
+        <span>·</span>
+        <span>Feb 2023 — Present</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-tab"><span class="dot"></span>skills.json</div>
+    <div class="json-panel reveal">
+<div class="line"><span class="b">{</span></div>
+<div class="line">  <span class="k">"languages"</span><span class="b">:</span> [<span class="s">"Python"</span>, <span class="s">"JavaScript"</span>, <span class="s">"C"</span>, <span class="s">"C++"</span>, <span class="s">"HTML/CSS"</span>],</div>
+<div class="line">  <span class="k">"backend"</span><span class="b">:</span> [<span class="s">"Django"</span>, <span class="s">"Django REST Framework"</span>, <span class="s">"Django Channels"</span>],</div>
+<div class="line">  <span class="k">"realtime"</span><span class="b">:</span> [<span class="s">"WebSockets"</span>, <span class="s">"WebRTC"</span>],</div>
+<div class="line">  <span class="k">"auth"</span><span class="b">:</span> [<span class="s">"JWT"</span>, <span class="s">"OAuth 2.0"</span>, <span class="s">"role-based access control"</span>],</div>
+<div class="line">  <span class="k">"data"</span><span class="b">:</span> [<span class="s">"database design"</span>, <span class="s">"REST API design"</span>],</div>
+<div class="line">  <span class="k">"tools"</span><span class="b">:</span> [<span class="s">"Git"</span>, <span class="s">"GitHub"</span>, <span class="s">"Postman"</span>]</div>
+<div class="line"><span class="b">}</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-tab"><span class="dot"></span>projects/</div>
+    <div class="row g-4">
+
+      <div class="col-md-6">
+        <div class="repo-card reveal">
+          <div class="repo-top">
+            <div class="repo-name"><a href="https://github.com/prabesh313/Astro" target="_blank" rel="noopener">Astro</a></div>
+            <span class="repo-tag pinned">pinned</span>
+          </div>
+          <ul class="repo-desc">
+            <li>Connects priests and clients through audio/video calls, chat, and consultation booking</li>
+            <li>DRF APIs with JWT auth and separate roles for clients and priests</li>
+            <li>Kundali, horoscope, Panchang and Nepali calendar via the Prokerala API</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">Django REST Framework</span><span class="pill">Channels</span><span class="pill">WebRTC</span><span class="pill">JWT</span>
+          </div>
+          <div class="repo-links">
+            <a class="repo-link" href="https://github.com/prabesh313/Astro" target="_blank" rel="noopener">↳ github.com/prabesh313/Astro</a>
+            <a class="repo-link" href="https://tourmaline-cheesecake-fc8765.netlify.app/" target="_blank" rel="noopener">↳ live demo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="repo-card reveal">
+          <div class="repo-top">
+            <div class="repo-name"><a href="https://github.com/prabesh313/Chess" target="_blank" rel="noopener">Chess</a></div>
+            <span class="repo-tag">logic</span>
+          </div>
+          <ul class="repo-desc">
+            <li>Multiplayer chess where two players create or join a room and play in real time</li>
+            <li>Move validation and game state kept in sync between both clients over WebSockets</li>
+            <li>Handles room codes, turn order, and reconnects without losing the game</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">Django</span><span class="pill">WebSockets</span><span class="pill">JavaScript</span>
+          </div>
+          <div class="repo-links">
+            <a class="repo-link" href="https://github.com/prabesh313/Chess" target="_blank" rel="noopener">↳ github.com/prabesh313/Chess</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="repo-card reveal">
+          <div class="repo-top">
+            <div class="repo-name"><a href="https://github.com/prabesh313/SafeHood" target="_blank" rel="noopener">SafeHood</a></div>
+            <span class="repo-tag">community</span>
+          </div>
+          <ul class="repo-desc">
+            <li>Lets people report and track real-time safety incidents in their area</li>
+            <li>Interactive map for location-based monitoring, OAuth 2.0 login</li>
+            <li>Email alerts when a new incident is reported or its status changes</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">Django Templates</span><span class="pill">OAuth 2.0</span><span class="pill">JS</span>
+          </div>
+          <div class="repo-links">
+            <a class="repo-link" href="https://github.com/prabesh313/SafeHood" target="_blank" rel="noopener">↳ github.com/prabesh313/SafeHood</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="repo-card reveal">
+          <div class="repo-top">
+            <div class="repo-name"><a href="https://github.com/prabesh313/Let-me-cook" target="_blank" rel="noopener">Let-me-cook</a></div>
+            <span class="repo-tag">AI</span>
+          </div>
+          <ul class="repo-desc">
+            <li>Generates recipes and cooking instructions from whatever ingredients you have</li>
+            <li>Follow-up chatbot handles substitutions and cooking questions mid-recipe</li>
+            <li>Structured recipe output with nutrition info, built on the Gemini API</li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">Django</span><span class="pill">Gemini API</span><span class="pill">JS</span>
+          </div>
+          <div class="repo-links">
+            <a class="repo-link" href="https://github.com/prabesh313/Let-me-cook" target="_blank" rel="noopener">↳ github.com/prabesh313/Let-me-cook</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="achievements">
+  <div class="container">
+    <div class="section-tab"><span class="dot"></span>achievements</div>
+    <div class="reveal">
+      <div class="badge-card" style="max-width:420px;">
+        <div class="badge-icon">Py</div>
+        <div>
+          <b>Python Programming Certificate</b>
+          <span>Kaggle · <a href="https://www.kaggle.com/learn/certification/prabesh313/python" target="_blank" rel="noopener">view credential</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact" style="border-bottom:none;">
+  <div class="container">
+    <div class="section-tab"><span class="dot"></span>contact</div>
+    <div class="contact-term reveal">
+      <div class="term-line"><span class="term-prompt">prabesh@dev</span>:~$ cat contact.txt</div>
+      <p class="hero-lede mt-2 mb-0">
+        Free to work, open to internships and full-stack roles. Easiest way to reach me is email.
+      </p>
+      <div class="contact-links">
+        <a class="btn-term primary" href="mailto:prabespaudel57@gmail.com">✉ prabespaudel57@gmail.com</a>
+        <a class="btn-term" href="tel:+9779869414992">☎ 9869414992</a>
+        <a class="btn-term" href="https://github.com/prabesh313" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn-term" href="https://www.linkedin.com/in/prabesh-paudel-04b927405" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> Prabesh Paudel
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+function typeInto(el, text, speed, done){
+  let i = 0;
+  el.textContent = '';
+  const cursor = document.createElement('span');
+  cursor.className = 'cursor';
+  function step(){
+    if(i <= text.length){
+      el.textContent = text.slice(0, i);
+      el.appendChild(cursor);
+      i++;
+      setTimeout(step, speed);
+    } else if(done){ done(); }
+  }
+  step();
+}
+const nameEl = document.getElementById('typedName');
+const roleEl = document.getElementById('typedRole');
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if(prefersReduced){
+  nameEl.textContent = 'Prabesh Paudel';
+  roleEl.textContent = '> full-stack developer, django & real-time systems';
+} else {
+  typeInto(nameEl, 'Prabesh Paudel', 55, function(){
+    typeInto(roleEl, '> full-stack developer, django & real-time systems', 28);
+  });
+}
+
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.15});
+revealEls.forEach(el=>io.observe(el));
+
+const sections = ['about','skills','projects','contact'].map(id=>document.getElementById(id));
+const navLinks = document.querySelectorAll('.topnav .nav-link');
+const navObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      navLinks.forEach(l=>l.classList.remove('active'));
+      const match = document.querySelector('.topnav .nav-link[href="#'+entry.target.id+'"]');
+      if(match) match.classList.add('active');
+    }
+  });
+},{rootMargin:'-40% 0px -50% 0px'});
+sections.forEach(s=>s && navObserver.observe(s));
+</script>
+</body>
+</html>

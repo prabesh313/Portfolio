@@ -392,9 +392,9 @@ footer{
 <div class="line">  <span class="k">"languages"</span><span class="b">:</span> [<span class="s">"Python"</span>, <span class="s">"JavaScript"</span>, <span class="s">"C"</span>, <span class="s">"C++"</span>, <span class="s">"HTML/CSS"</span>],</div>
 <div class="line">  <span class="k">"backend"</span><span class="b">:</span> [<span class="s">"Django"</span>, <span class="s">"Django REST Framework"</span>, <span class="s">"Django Channels"</span>],</div>
 <div class="line">  <span class="k">"realtime"</span><span class="b">:</span> [<span class="s">"WebSockets"</span>, <span class="s">"WebRTC"</span>],</div>
-<div class="line">  <span class="k">"auth"</span><span class="b">:</span> [<span class="s">"JWT"</span>, <span class="s">"OAuth 2.0"</span>, <span class="s">"role-based access control"</span>],</div>
-<div class="line">  <span class="k">"data"</span><span class="b">:</span> [<span class="s">"database design"</span>, <span class="s">"REST API design"</span>],</div>
-<div class="line">  <span class="k">"tools"</span><span class="b">:</span> [<span class="s">"Git"</span>, <span class="s">"GitHub"</span>, <span class="s">"Postman"</span>]</div>
+<div class="line">  <span class="k">"auth"</span><span class="b">:</span> [<span class="s">"JWT"</span>, <span class="s">"OAuth 2.0"</span> , <span class="s">"role-based access control"</span>],</div>
+<div class="line">  <span class="k">"data"</span><span class="b">:</span> [<span class="s">"database design"</span>,<span class="s">"PostgreSQL"</span>,<span class="s">"MySQL"</span>,<span class="s">"SQLite"</span>, <span class="s">"REST API design"</span>],</div>
+<div class="line">  <span class="k">"tools"</span><span class="b">:</span> [<span class="s">"Git"</span>, <span class="s">"GitHub"</span>, <span class="s">"Postman"</span>,<span class="s">"Docker"</span>,<span class="s">"GitHub Actions(CI/CD)"</span>]</div>
 <div class="line"><span class="b">}</span></div>
     </div>
   </div>
@@ -421,7 +421,6 @@ footer{
           </div>
           <div class="repo-links">
             <a class="repo-link" href="https://github.com/prabesh313/Astro" target="_blank" rel="noopener">↳ github.com/prabesh313/Astro</a>
-            <a class="repo-link" href="https://tourmaline-cheesecake-fc8765.netlify.app/" target="_blank" rel="noopener">↳ live demo</a>
           </div>
         </div>
       </div>
@@ -552,10 +551,10 @@ const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').mat
 
 if(prefersReduced){
   nameEl.textContent = 'Prabesh Paudel';
-  roleEl.textContent = '> full-stack developer, django & real-time systems';
+  roleEl.textContent = '> backend developer, django & real-time systems';
 } else {
   typeInto(nameEl, 'Prabesh Paudel', 55, function(){
-    typeInto(roleEl, '> full-stack developer, django & real-time systems', 28);
+    typeInto(roleEl, '> backend developer, django & real-time systems', 28);
   });
 }
 
